@@ -1,0 +1,84 @@
+
+function init(self)
+	self.canParalax = false
+end
+
+function final(self)
+	-- Add finalization code here
+	-- Remove this function if not needed
+end
+
+local function anotherLayerMove(self)
+
+	local n = 1
+
+	local layerName = "l" .. n .. "_peace"
+
+	local x = 20
+
+	for i = 1, 4 do
+		
+		go.set_position(go.get_position(layerName .. "1") + vmath.vector3(-x,0,0), layerName .. "1")
+		go.set_position(go.get_position(layerName .. "2") + vmath.vector3(-x,0,0), layerName .. "2")
+
+		if go.get_position(layerName .. "1").x < -1900 then
+
+			local newPos = go.get_position(layerName .. "1")
+			newPos.x = 1910
+			go.set_position(newPos, layerName .. "1")
+		end
+
+		if go.get_position(layerName .. "2").x < -1900 then
+
+			local newPos = go.get_position(layerName .. "2")
+			newPos.x = 1910
+			go.set_position(newPos, layerName .. "2")
+		end
+
+		x = x -5
+		n = n + 1
+		layerName = "l" .. n .. "_peace"
+	end
+
+end
+
+function update(self, dt)
+	go.set_position(go.get_position("l5_peace1") + vmath.vector3(-2.5,0,0), "l5_peace1")
+	go.set_position(go.get_position("l5_peace2") + vmath.vector3(-2.5,0,0), "l5_peace2")
+
+	if go.get_position("l5_peace1").x < -1920 then
+		
+		local newPos = go.get_position("l5_peace1")
+		newPos.x = 1920
+		go.set_position(newPos, "l5_peace1")
+	end
+	
+	if go.get_position("l5_peace2").x < -1920 then
+		
+		local newPos = go.get_position("l5_peace2")
+		newPos.x = 1920
+		go.set_position(newPos, "l5_peace2")
+	end
+
+	if self.canParalax then
+		anotherLayerMove(self)
+	end
+end
+
+
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("parallax") then
+		self.canParalax = message.enable
+	end	
+end
+
+function on_input(self, action_id, action)
+	-- Add input-handling code here
+	-- Remove this function if not needed
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Remove this function if not needed
+end

@@ -1,0 +1,87 @@
+animations {
+  id: "idle"
+  images {
+    image: "/player/01-Idle/E_E_Sword__Idle_000.png"
+  }
+  images {
+    image: "/player/01-Idle/E_E_Sword__Idle_001.png"
+  }
+  images {
+    image: "/player/01-Idle/E_E_Sword__Idle_002.png"
+  }
+  images {
+    image: "/player/01-Idle/E_E_Sword__Idle_003.png"
+  }
+  images {
+    image: "/player/01-Idle/E_E_Sword__Idle_004.png"
+  }
+  images {
+    image: "/player/01-Idle/E_E_Sword__Idle_005.png"
+  }
+  images {
+    image: "/player/01-Idle/E_E_Sword__Idle_006.png"
+  }
+  images {
+    image: "/player/01-Idle/E_E_Sword__Idle_007.png"
+  }
+  images {
+    image: "/player/01-Idle/E_E_Sword__Idle_008.png"
+  }
+  images {
+    image: "/player/01-Idle/E_E_Sword__Idle_009.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 10
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "jump"
+  images {
+    image: "/player/05-Jump/E_E_Sword__Jump_000.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 1
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "attack"
+  images {
+    image: "/player/03-Slash/E_E_Sword__Attack_000.png"
+  }
+  images {
+    image: "/player/03-Slash/E_E_Sword__Attack_001.png"
+  }
+  images {
+    image: "/player/03-Slash/E_E_Sword__Attack_002.png"
+  }
+  images {
+    image: "/player/03-Slash/E_E_Sword__Attack_003.png"
+  }
+  images {
+    image: "/player/03-Slash/E_E_Sword__Attack_004.png"
+  }
+  images {
+    image: "/player/03-Slash/E_E_Sword__Attack_005.png"
+  }
+  images {
+    image: "/player/03-Slash/E_E_Sword__Attack_006.png"
+  }
+  images {
+    image: "/player/03-Slash/E_E_Sword__Attack_007.png"
+  }
+  images {
+    image: "/player/03-Slash/E_E_Sword__Attack_008.png"
+  }
+  images {
+    image: "/player/03-Slash/E_E_Sword__Attack_009.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 10
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

@@ -1,0 +1,21 @@
+images {
+  image: "/images/background/landscape_0000_1_trees.png"
+}
+images {
+  image: "/images/background/landscape_0001_2_trees.png"
+}
+images {
+  image: "/images/background/landscape_0002_3_trees.png"
+}
+images {
+  image: "/images/background/landscape_0003_4_mountain.png"
+}
+images {
+  image: "/images/background/landscape_0004_5_clouds.png"
+}
+images {
+  image: "/images/background/landscape_0005_6_background.png"
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0
