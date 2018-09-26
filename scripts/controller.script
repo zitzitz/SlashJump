@@ -1,8 +1,19 @@
 local rendercam = require "rendercam.rendercam"
 
 function init(self)
-	-- Add initialization code here
-	-- Remove this function if not needed
+	self.platforms ={}
+	local xPos = -400
+	local yPos = vmath.lerp(math.random(), -250, -125)
+
+
+	for i = 1, 8 do
+		self.platforms[i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
+		local url = msg.url(self.platforms[i])
+		print(url)
+		--xPos = xPos + self.platforms[i].get("sprite", "size.x") * self.platforms[i].get_scale().x
+		xPos = xPos + 170
+		yPos = vmath.lerp(math.random(), -250, -125)
+	end
 end
 
 function final(self)

@@ -5,7 +5,7 @@ instances {
   position {
     x: -232.0
     y: 17.0
-    z: 0.0
+    z: 0.5
   }
   rotation {
     x: 0.0
@@ -36,26 +36,6 @@ instances {
   scale3 {
     x: 1.0
     y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "platrormBase"
-  prototype: "/platforms/platrormBase.go"
-  position {
-    x: -244.0
-    y: -74.0
-    z: -0.1
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 0.2
-    y: 0.4
     z: 1.0
   }
 }
@@ -455,7 +435,7 @@ embedded_instances {
   position {
     x: 0.0
     y: 0.0
-    z: -0.07
+    z: -0.08
   }
   rotation {
     x: 0.0
@@ -557,7 +537,7 @@ embedded_instances {
   position {
     x: 0.0
     y: 0.0
-    z: -0.08
+    z: -0.07
   }
   rotation {
     x: 0.0
@@ -636,6 +616,59 @@ embedded_instances {
   ""
   position {
     x: 959.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "controller"
+  data: "components {\n"
+  "  id: \"controller\"\n"
+  "  component: \"/scripts/controller.script\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"factoryBase\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/platforms/platrormBase.go\\\"\\n"
+  "load_dynamically: false\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 0.0
     y: 0.0
     z: 0.0
   }
