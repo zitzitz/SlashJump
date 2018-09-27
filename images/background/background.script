@@ -14,7 +14,7 @@ local function anotherLayerMove(self)
 
 	local layerName = "l" .. n .. "_peace"
 
-	local x = 20
+	local x = 10
 
 	for i = 1, 4 do
 		
@@ -35,7 +35,7 @@ local function anotherLayerMove(self)
 			go.set_position(newPos, layerName .. "2")
 		end
 
-		x = x -5
+		x = x -2
 		n = n + 1
 		layerName = "l" .. n .. "_peace"
 	end

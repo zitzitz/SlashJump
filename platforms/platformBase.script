@@ -8,15 +8,14 @@ function final(self)
 end
 
 function update(self, dt)
-	-- Add update code here
-	-- Remove this function if not needed
+
 end
 
 local function movePlatform(self)
 	local pos = go.get_position()
-	print(pos.x)
+	
 	pos.x = pos.x - go.get("#sprite", "size.x") * go.get_scale().x
-	print(pos.x)
+
 	--go.set_position(pos)
 	go.animate(go.get_id(), "position.x", go.PLAYBACK_ONCE_FORWARD, pos.x, go.EASING_LINEAR, 0.5)
 end

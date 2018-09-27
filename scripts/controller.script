@@ -1,17 +1,17 @@
 local rendercam = require "rendercam.rendercam"
 
 function init(self)
+	self.i = 1
 	self.platforms ={}
-	local xPos = -400
+	local xPos = -600
 	local yPos = vmath.lerp(math.random(), -250, -125)
 
 
 	for i = 1, 8 do
 		self.platforms[i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
 		local url = msg.url(self.platforms[i])
-		print(url)
-		--xPos = xPos + self.platforms[i].get("sprite", "size.x") * self.platforms[i].get_scale().x
-		xPos = xPos + 170
+		url.fragment = "sprite"
+		xPos = xPos + go.get(url, "size.x") * 0.2
 		yPos = vmath.lerp(math.random(), -250, -125)
 	end
 end
@@ -22,13 +22,55 @@ function final(self)
 end
 
 function update(self, dt)
-	-- Add update code here
-	-- Remove this function if not needed
+	
+end
+
+local function testFucn(self)
+	--[[local pp = go.get(self.platforms[self.i], "position.x")
+	print(go.get(self.platforms[8], "position.x"))
+	print(go.get(self.platforms[self.i], "position.x"))
+	if pp < -200 then
+		go.delete(self.platforms[self.i])
+		local index = self.i
+		if index < 1 then
+			index = 8
+		end
+		--print(index)
+		local yPos = vmath.lerp(math.random(), -250, -125)
+		local xPos = go.get(self.platforms[index], "position.x")
+		print("Xpos: " .. xPos)
+		local url = msg.url(self.platforms[index])
+		url.fragment = "sprite"
+		--print( go.get(url "size.x") )
+		xPos = xPos + go.get(url, "size.x") * 0.2
+		print("Xpos2: " .. xPos)
+		--pprint(go.get(url, "size.x"))
+		self.platforms[self.i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
+		self.i = self.i +1
+	end]]
+
+	local lastPlatform = go.get(self.platforms[self.i], "position.x")
+	go.delete(self.platforms[self.i])
+	local yPos = vmath.lerp(math.random(), -250, -125)
+	local newI = self.i - 1
+	if newI < 1 then
+		newI = 8
+	end
+	local xPos = go.get(self.platforms[newI], "position.x")
+	self.platforms[self.i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
+	self.i = self.i + 1
+	if self.i >8  then
+		self.i = 1
+	end
 end
 
 function on_message(self, message_id, message, sender)
-	-- Add message-handling code here
-	-- Remove this function if not needed
+	if message_id == hash("jump") then
+		--for i = 1, 8 do
+		testFucn(self)
+			
+		--end
+	end
 end
 
 function on_input(self, action_id, action)

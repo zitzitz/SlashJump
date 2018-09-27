@@ -99,6 +99,7 @@ function on_input(self, action_id, action)
 		if action.pressed then
 			jump(self)
 			msg.post("/background", "parallax", {enable = true})
+			msg.post("/controller", "jump")
 			--msg.post("/platrormBase", "jump", {})
 		elseif action.released then
 			abort_jump(self)
