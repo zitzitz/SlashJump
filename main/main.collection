@@ -703,7 +703,7 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "uigo"
+  id: "hud"
   data: "components {\n"
   "  id: \"ui\"\n"
   "  component: \"/UI/ui.gui\"\n"

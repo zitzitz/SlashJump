@@ -1,4 +1,4 @@
-script: ""
+script: "/UI/ui.gui_script"
 fonts {
   name: "uiFont"
   font: "/UI/uiFont.font"

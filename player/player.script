@@ -9,6 +9,8 @@ function init(self)
 	self.correction = vmath.vector3()
 	self.anim = nil
 	self.current_animation = nil
+	self.health = 2
+	self.score = 0
 end
 
 function final(self)
@@ -86,7 +88,9 @@ local function jump(self)
 		play_animation(self, hash("jump"))
 		msg.post("/background", "parallax", {enable = true})
 		msg.post("/controller", "jump")
-	end
+		self.score = self.score + 1
+		msg.post("/hud#ui", "score", {score = self.score})		
+		end
 end
 
 local function jump2(self)
