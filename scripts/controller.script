@@ -9,7 +9,6 @@ function init(self)
 
 	for i = 1, 8 do
 		local rand = math.random(0, 10)
-		print(rand)
 		if rand > 6 then
 			self.platforms[i] = factory.create("#factoryBroken", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
 		else
