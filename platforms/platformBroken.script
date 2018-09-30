@@ -1,5 +1,5 @@
 function init(self)
-	msg.post(".", "acquire_input_focus")
+	self.anim = nil
 end
 
 function final(self)
@@ -24,13 +24,23 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("jump") then
 		--print(go.get_scale())
 		movePlatform(self)
+	end
+	
+	if message_id == hash("contact_point_response") then
+		if message.group == hash("player") then
+			--msg.post("#sprite", "play_animation", {id = hash("broke")})
+			if self.anim ~= hash("broke") then
+				self.anim = hash("broke")
+				sprite.play_flipbook("#sprite", hash("broke"), function()
+					msg.post(".", "disable")
+				end)
+			end
+		end
 	end	
 end
 
 function on_input(self, action_id, action)
-	if action_id == hash("jump") and action.pressed then
-		--movePlatform(self)
-	end
+	
 end
 
 function on_reload(self)

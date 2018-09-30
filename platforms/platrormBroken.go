@@ -1,6 +1,6 @@
 components {
-  id: "platformBase"
-  component: "/platforms/platformBase.script"
+  id: "platformBroken"
+  component: "/platforms/platformBroken.script"
   position {
     x: 0.0
     y: 0.0
@@ -17,7 +17,7 @@ embedded_components {
   id: "sprite"
   type: "sprite"
   data: "tile_set: \"/platforms/platforms.atlas\"\n"
-  "default_animation: \"brown platform merged transparent\"\n"
+  "default_animation: \"platformBroken\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   ""

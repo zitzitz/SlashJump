@@ -1,0 +1,34 @@
+images {
+  image: "/images/brown platform merged transparent.png"
+}
+images {
+  image: "/platforms/platformBroken.png"
+}
+animations {
+  id: "broke"
+  images {
+    image: "/platforms/broken/1.png"
+  }
+  images {
+    image: "/platforms/broken/2.png"
+  }
+  images {
+    image: "/platforms/broken/3.png"
+  }
+  images {
+    image: "/platforms/broken/4.png"
+  }
+  images {
+    image: "/platforms/broken/5.png"
+  }
+  images {
+    image: "/platforms/broken/6.png"
+  }
+  playback: PLAYBACK_ONCE_FORWARD
+  fps: 12
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

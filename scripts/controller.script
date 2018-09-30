@@ -8,7 +8,13 @@ function init(self)
 
 
 	for i = 1, 8 do
-		self.platforms[i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
+		local rand = math.random(0, 10)
+		print(rand)
+		if rand > 6 then
+			self.platforms[i] = factory.create("#factoryBroken", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
+		else
+			self.platforms[i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
+		end
 		local url = msg.url(self.platforms[i])
 		url.fragment = "sprite"
 		xPos = xPos + go.get(url, "size.x") * 0.2
@@ -57,7 +63,13 @@ local function testFucn(self)
 		newI = 8
 	end
 	local xPos = go.get(self.platforms[newI], "position.x")
-	self.platforms[self.i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
+	local rand = math.random(0, 10)
+	if rand > 6 then
+		self.platforms[self.i] = factory.create("#factoryBroken", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
+	else
+		self.platforms[self.i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
+	end
+	--self.platforms[self.i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
 	self.i = self.i + 1
 	if self.i >8  then
 		self.i = 1
@@ -67,9 +79,12 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("jump") then
 		--for i = 1, 8 do
-		testFucn(self)
-			
+		
+		for i = 1, 8 do
+			msg.post(self.platforms[i], "jump")
+		end
 		--end
+		testFucn(self)
 	end
 end
 
