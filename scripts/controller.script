@@ -2,6 +2,7 @@ local rendercam = require "rendercam.rendercam"
 
 function init(self)
 	self.i = 1
+	self.enemy = nil
 	self.platforms ={}
 	local xPos = -600
 	local yPos = vmath.lerp(math.random(), -250, -125)
@@ -19,6 +20,8 @@ function init(self)
 		xPos = xPos + go.get(url, "size.x") * 0.2
 		yPos = vmath.lerp(math.random(), -250, -125)
 	end
+	self.enemy = factory.create("#factoryEnemy1", vmath.vector3(xPos, yPos+100, 1), nil, {}, vmath.vector3(0.2, 0.2, 0.1))
+	msg.post(self.enemy, "set_parent", { parent_id = self.platforms[5], keep_world_transform = 1 })
 end
 
 function final(self)
@@ -27,7 +30,7 @@ function final(self)
 end
 
 function update(self, dt)
-	
+	print(go.get(self.enemy, "position"))
 end
 
 local function testFucn(self)
@@ -67,8 +70,12 @@ local function testFucn(self)
 		self.platforms[self.i] = factory.create("#factoryBroken", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
 	else
 		self.platforms[self.i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
+
+		--[[if self.enemy == nil then
+			self.enemy = factory.create("#factoryEnemy1", vmath.vector3(xPos, yPos+800, 1), nil, {}, vmath.vector3(0.2, 0.2, 1))
+		end
+		msg.post(self.enemy, "set_parent", { parent_id = self.platforms[self.i], keep_world_transform = 1 })]]
 	end
-	--self.platforms[self.i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
 	self.i = self.i + 1
 	if self.i >8  then
 		self.i = 1

@@ -1,0 +1,52 @@
+animations {
+  id: "enemy1"
+  images {
+    image: "/enemies/PNG/1.png"
+  }
+  images {
+    image: "/enemies/PNG/10.png"
+  }
+  images {
+    image: "/enemies/PNG/11.png"
+  }
+  images {
+    image: "/enemies/PNG/12.png"
+  }
+  images {
+    image: "/enemies/PNG/13.png"
+  }
+  images {
+    image: "/enemies/PNG/14.png"
+  }
+  images {
+    image: "/enemies/PNG/2.png"
+  }
+  images {
+    image: "/enemies/PNG/3.png"
+  }
+  images {
+    image: "/enemies/PNG/4.png"
+  }
+  images {
+    image: "/enemies/PNG/5.png"
+  }
+  images {
+    image: "/enemies/PNG/6.png"
+  }
+  images {
+    image: "/enemies/PNG/7.png"
+  }
+  images {
+    image: "/enemies/PNG/8.png"
+  }
+  images {
+    image: "/enemies/PNG/9.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 10
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0
