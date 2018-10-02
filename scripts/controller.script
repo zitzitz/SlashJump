@@ -20,8 +20,6 @@ function init(self)
 		xPos = xPos + go.get(url, "size.x") * 0.2
 		yPos = vmath.lerp(math.random(), -250, -125)
 	end
-	self.enemy = factory.create("#factoryEnemy1", vmath.vector3(xPos, yPos+100, 1), nil, {}, vmath.vector3(0.2, 0.2, 0.1))
-	msg.post(self.enemy, "set_parent", { parent_id = self.platforms[5], keep_world_transform = 1 })
 end
 
 function final(self)
@@ -30,35 +28,12 @@ function final(self)
 end
 
 function update(self, dt)
-	print(go.get(self.enemy, "position"))
+	
 end
 
 local function testFucn(self)
-	--[[local pp = go.get(self.platforms[self.i], "position.x")
-	print(go.get(self.platforms[8], "position.x"))
-	print(go.get(self.platforms[self.i], "position.x"))
-	if pp < -200 then
-		go.delete(self.platforms[self.i])
-		local index = self.i
-		if index < 1 then
-			index = 8
-		end
-		--print(index)
-		local yPos = vmath.lerp(math.random(), -250, -125)
-		local xPos = go.get(self.platforms[index], "position.x")
-		print("Xpos: " .. xPos)
-		local url = msg.url(self.platforms[index])
-		url.fragment = "sprite"
-		--print( go.get(url "size.x") )
-		xPos = xPos + go.get(url, "size.x") * 0.2
-		print("Xpos2: " .. xPos)
-		--pprint(go.get(url, "size.x"))
-		self.platforms[self.i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
-		self.i = self.i +1
-	end]]
-
 	local lastPlatform = go.get(self.platforms[self.i], "position.x")
-	go.delete(self.platforms[self.i])
+	go.delete(self.platforms[self.i], true)
 	local yPos = vmath.lerp(math.random(), -250, -125)
 	local newI = self.i - 1
 	if newI < 1 then
@@ -71,10 +46,11 @@ local function testFucn(self)
 	else
 		self.platforms[self.i] = factory.create("#factoryBase", vmath.vector3(xPos, yPos, 0), nil, {}, vmath.vector3(0.2, 0.4, 1))
 
-		--[[if self.enemy == nil then
-			self.enemy = factory.create("#factoryEnemy1", vmath.vector3(xPos, yPos+800, 1), nil, {}, vmath.vector3(0.2, 0.2, 1))
+		if rand > 3 then
+			self.enemy = factory.create("#factoryEnemy1", vmath.vector3(xPos, yPos+65, 0.1), nil, {}, vmath.vector3(0.2, 0.2, 1))
+			msg.post(self.enemy, "set_parent", { parent_id = self.platforms[self.i], keep_world_transform = 1 })
 		end
-		msg.post(self.enemy, "set_parent", { parent_id = self.platforms[self.i], keep_world_transform = 1 })]]
+		
 	end
 	self.i = self.i + 1
 	if self.i >8  then

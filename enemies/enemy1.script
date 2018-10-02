@@ -1,5 +1,5 @@
 local jumpForce = 1250
-local gravity = -2
+local gravity = -120
 
 function init(self)
 	self.onGround = false
@@ -13,15 +13,16 @@ function final(self)
 end
 
 function update(self, dt)
-	local gravity = vmath.vector3(0, gravity, 0)
+	--[[local gravity = vmath.vector3(0, gravity, 0)
 
 	if not self.onGround then
 		self.velocity = self.velocity + gravity
 	end
 	go.set_position(go.get_position() + self.velocity *dt)
 
+
 	self.correction = vmath.vector3()
-	self.onGround = false
+	self.onGround = false]]
 end
 
 local function handle_obstacle_contact(self, normal, distance)
@@ -51,8 +52,9 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("contact_point_response") then
 		-- check that the object is something we consider an obstacle
-		if message.group == hash("platform") then
-			handle_obstacle_contact(self, message.normal, message.distance)
+		if message.group == hash("sword") then
+			print("hahha")
+			go.delete()
 		end
 	end
 end
