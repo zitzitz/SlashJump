@@ -5,6 +5,7 @@ function init(self)
 	self.onGround = false
 	self.velocity = vmath.vector3()
 	self.correction = vmath.vector3()
+	self.health = 2
 end
 
 function final(self)
@@ -13,16 +14,10 @@ function final(self)
 end
 
 function update(self, dt)
-	--[[local gravity = vmath.vector3(0, gravity, 0)
-
-	if not self.onGround then
-		self.velocity = self.velocity + gravity
+	print(self.health)
+	if self.health < 1 then
+		go.delete()
 	end
-	go.set_position(go.get_position() + self.velocity *dt)
-
-
-	self.correction = vmath.vector3()
-	self.onGround = false]]
 end
 
 local function handle_obstacle_contact(self, normal, distance)
@@ -53,8 +48,12 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("contact_point_response") then
 		-- check that the object is something we consider an obstacle
 		if message.group == hash("sword") then
-			print("hahha")
-			go.delete()
+			self.health = self.health -1
+			go.animate("#sprite", "tint", go.PLAYBACK_ONCE_PINGPONG, vmath.vector4(1, 1, 1, .5), go.EASING_OUTQUAD, 0.5)
+			--go.set("#sprite", "color_add", vmath.vector4(1, 0, 0, 1))
+			--sprite.set_constant("#sprite", "tint", vmath.vector4(1, 1, 1, .5))
+			
+			msg.post("sword", "disable")
 		end
 	end
 end
