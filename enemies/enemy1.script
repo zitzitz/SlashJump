@@ -49,7 +49,7 @@ function on_message(self, message_id, message, sender)
 		-- check that the object is something we consider an obstacle
 		if message.group == hash("sword") then
 			self.health = self.health -1
-			go.animate("#sprite", "tint", go.PLAYBACK_ONCE_PINGPONG, vmath.vector4(1, 1, 1, .5), go.EASING_OUTQUAD, 0.5)
+			go.animate("#sprite", "tint", go.PLAYBACK_ONCE_PINGPONG, vmath.vector4(2, 2, 2, 1), go.EASING_OUTQUAD, 0.3)
 			--go.set("#sprite", "color_add", vmath.vector4(1, 0, 0, 1))
 			--sprite.set_constant("#sprite", "tint", vmath.vector4(1, 1, 1, .5))
 			
