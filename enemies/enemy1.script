@@ -1,10 +1,5 @@
-local jumpForce = 1250
-local gravity = -120
-
 function init(self)
-	self.onGround = false
-	self.velocity = vmath.vector3()
-	self.correction = vmath.vector3()
+
 	self.health = 2
 end
 
@@ -14,34 +9,7 @@ function final(self)
 end
 
 function update(self, dt)
-	print(self.health)
-	if self.health < 1 then
-		go.delete()
-	end
-end
-
-local function handle_obstacle_contact(self, normal, distance)
-	-- project the correction vector onto the contact normal
-	-- (the correction vector is the 0-vector for the first contact point)
-	local proj = vmath.dot(self.correction, normal)
-	-- calculate the compensation we need to make for this contact point
-	local comp = (distance - proj) * normal
-	-- add it to the correction vector
-	self.correction = self.correction + comp
-	-- apply the compensation to the player character
-	go.set_position(go.get_position() + comp)
-	-- check if the normal points enough up to consider the player standing on the ground
-	-- (0.7 is roughly equal to 45 degrees deviation from pure vertical direction)
-	if normal.y > 0.7 then
-		self.onGround = true
-	end
-	-- project the velocity onto the normal
-	proj = vmath.dot(self.velocity, normal)
-	-- if the projection is negative, it means that some of the velocity points towards the contact point
-	if proj < 0 then
-		-- remove that component in that case
-		self.velocity = self.velocity - proj * normal
-	end
+	
 end
 
 function on_message(self, message_id, message, sender)
@@ -54,6 +22,10 @@ function on_message(self, message_id, message, sender)
 			--sprite.set_constant("#sprite", "tint", vmath.vector4(1, 1, 1, .5))
 			
 			msg.post("sword", "disable")
+			if self.health < 1 then
+				go.animate("#sprite", "tint", go.PLAYBACK_ONCE_PINGPONG, vmath.vector4(2, 2, 2, 1), go.EASING_OUTQUAD, 0.3, 0, function() go.delete() end )
+				
+			end
 		end
 	end
 end
