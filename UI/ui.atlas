@@ -1,6 +1,15 @@
 images {
   image: "/UI/heart.png"
 }
+images {
+  image: "/UI/flatDark25.png"
+}
+images {
+  image: "/UI/shadedDark26.png"
+}
+images {
+  image: "/UI/shadedDark36.png"
+}
 margin: 0
 extrude_borders: 0
 inner_padding: 0

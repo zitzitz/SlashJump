@@ -1,5 +1,8 @@
 function init(self)
+	msg.post(".", "acquire_input_focus") 
 	self.score = gui.get_node("score")
+	self.jumpButton = gui.get_node("jump")
+	self.attackButton = gui.get_node("attack")
 end
 
 function final(self)
@@ -14,7 +17,6 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("score") then 
-		print("HELLO")
 		if message.score < 10 then
 			gui.set_text(self.score, "0" .. message.score )
 		else
@@ -24,8 +26,24 @@ function on_message(self, message_id, message, sender)
 end
 
 function on_input(self, action_id, action)
-	-- Add input-handling code here
-	-- Remove this function if not needed
+	
+	if action_id == hash("touch")  then 
+
+		if gui.pick_node(self.jumpButton, action.x, action.y) and action.pressed then 
+			msg.post("/player", "jump")
+			print("JUMP BUTTON")
+		elseif gui.pick_node(self.attackButton, action.x, action.y) then
+
+			if action.pressed then
+				msg.post("/player", "attack")
+			elseif action.released then
+				msg.post("/player", "attack_cancle")
+				print("attack cancle")
+			end
+			
+		end
+		
+	end
 end
 
 function on_reload(self)
