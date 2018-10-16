@@ -13,6 +13,7 @@ function init(self)
 	self.current_animation = nil
 	self.health = 2
 	self.score = 0
+	self.sender = true
 end
 
 function final(self)
@@ -33,6 +34,13 @@ end
 
 function update(self, dt)
 	--print(self.velocity)
+
+	if go.get_position().y < -320 and self.sender then
+		
+		msg.post("/GameOver#gameOverProxy", "load")
+		self.sender = false
+	end
+	
 	local gravity = vmath.vector3(0, gravity, 0)
 	
 	if not self.onGround then
@@ -103,6 +111,13 @@ local function attack_cancle(self)
 end
 
 function on_message(self, message_id, message, sender)
+
+	if message_id == hash("proxy_loaded") then
+		-- New world is loaded. Init and enable it.
+		msg.post(sender, "init")
+		msg.post(sender, "enable")
+	end
+	
 	if message_id == hash("jump") then
 
 		jump(self)

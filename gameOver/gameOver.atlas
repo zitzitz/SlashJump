@@ -1,0 +1,6 @@
+images {
+  image: "/gameOver/scifi_main_menu.jpg"
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

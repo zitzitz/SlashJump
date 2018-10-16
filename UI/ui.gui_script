@@ -31,14 +31,12 @@ function on_input(self, action_id, action)
 
 		if gui.pick_node(self.jumpButton, action.x, action.y) and action.pressed then 
 			msg.post("/player", "jump")
-			print("JUMP BUTTON")
 		elseif gui.pick_node(self.attackButton, action.x, action.y) then
 
 			if action.pressed then
 				msg.post("/player", "attack")
 			elseif action.released then
 				msg.post("/player", "attack_cancle")
-				print("attack cancle")
 			end
 			
 		end

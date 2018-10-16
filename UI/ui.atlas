@@ -2,13 +2,16 @@ images {
   image: "/UI/heart.png"
 }
 images {
-  image: "/UI/flatDark25.png"
-}
-images {
   image: "/UI/shadedDark26.png"
 }
 images {
   image: "/UI/shadedDark36.png"
+}
+images {
+  image: "/UI/shadedDarkRestart.png"
+}
+images {
+  image: "/UI/shadedDark45.png"
 }
 margin: 0
 extrude_borders: 0

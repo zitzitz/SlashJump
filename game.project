@@ -16,3 +16,6 @@ dependencies =
 [physics]
 debug = 0
 
+[android]
+package = com.example.sj
+
