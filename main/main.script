@@ -3,14 +3,28 @@ function init(self)
 	msg.post("#", "show_game")
 end
 
+local function restrt_game(self)
+	msg.post("#GameOverCollectionProxy", "disable")
+	msg.post("#GameOverCollectionProxy", "final")
+	msg.post("#GameOverCollectionProxy", "unload")
+
+	msg.post("#GameCollectionProxy", "load")
+end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("show_game") then
-		msg.post("/game#GameCollectionProxy", "load")
+		msg.post("#GameCollectionProxy", "load")
 
 	elseif message_id == hash("show_game_over") then
 		print("showwww")
-		msg.post("/game#GameOverCollectionProxy", "load")
+		msg.post("#GameCollectionProxy", "disable")
+		msg.post("#GameCollectionProxy", "final")
+		msg.post("#GameCollectionProxy", "unload")
+		
+		msg.post("#GameOverCollectionProxy", "load")
+
+	elseif message_id == hash("restart_game") then
+		restrt_game(self)
 	elseif message_id == hash("proxy_loaded") then
 
 		msg.post(sender, "init")

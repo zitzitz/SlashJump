@@ -1,0 +1,33 @@
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	self.restart_button = gui.get_node("restart")
+end
+
+function final(self)
+	-- Add finalization code here
+	-- Remove this function if not needed
+end
+
+function update(self, dt)
+	-- Add update code here
+	-- Remove this function if not needed
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash("touch")  then 
+
+		if gui.pick_node(self.restart_button, action.x, action.y) and action.pressed then 
+			msg.post("main:/game", "restart_game")
+		end
+	end
+end
+
+function on_reload(self)
+	-- Add input-handling code here
+	-- Remove this function if not needed
+end

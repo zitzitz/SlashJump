@@ -37,11 +37,9 @@ function update(self, dt)
 
 	if go.get_position().y < -320 and self.sender then
 
-		msg.post("/game#GameOverCollectionProxy", "disable")
-		msg.post("/game#GameOverCollectionProxy", "final")
-		msg.post("/game#GameOverCollectionProxy", "unload")
-		--msg.post("#", "show_game_over")
-		msg.post("/GameOver#gameOverProxy", "load")
+		
+		msg.post("main:/game#", "show_game_over")
+		--msg.post("/GameOver#gameOverProxy", "load")
 		self.sender = false
 	end
 	
@@ -111,7 +109,7 @@ local function attack(self)
 end
 
 local function attack_cancle(self)
-	msg.post("sword", "disable")
+	--msg.post("sword", "disable")
 end
 
 function on_message(self, message_id, message, sender)

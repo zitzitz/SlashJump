@@ -1,4 +1,4 @@
-script: ""
+script: "/UI/gameOver/gameover.gui_script"
 textures {
   name: "ui"
   texture: "/UI/ui.atlas"
