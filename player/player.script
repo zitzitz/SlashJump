@@ -14,6 +14,7 @@ function init(self)
 	self.health = 2
 	self.score = 0
 	self.sender = true
+	self.can_damage = true
 end
 
 function final(self)
@@ -114,11 +115,11 @@ end
 
 function on_message(self, message_id, message, sender)
 
-	if message_id == hash("proxy_loaded") then
+	--[[if message_id == hash("proxy_loaded") then
 		-- New world is loaded. Init and enable it.
 		msg.post(sender, "init")
 		msg.post(sender, "enable")
-	end
+	end]]
 	
 	if message_id == hash("jump") then
 
@@ -134,7 +135,21 @@ function on_message(self, message_id, message, sender)
 		-- check that the object is something we consider an obstacle
 		if message.group == hash("platform") then
 			handle_obstacle_contact(self, message.normal, message.distance)
+		elseif message.group == hash("enemy") and self.can_damage then
+			print(self.health)
+			self.health = self.health - 1
+			if self.health < 1 then
+				msg.post("main:/game#", "show_game_over")
+			end
+			self.can_damage = false
+			local id = delay.seconds(1.5, function(self, id)
+				print("I will be called once, unless I'm cancelled")
+				self.can_damage = true
+			end)
 		end
+	else
+		print("cancle collision")
+		--self.can_damage = true
 	end
 end
 

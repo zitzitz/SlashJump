@@ -11,7 +11,7 @@ height = 640
 
 [project]
 title = SlashJump
-dependencies = 
+dependencies = https://github.com/britzl/defold-timer/archive/master.zip
 
 [physics]
 debug = 0
