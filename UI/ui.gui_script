@@ -3,6 +3,12 @@ function init(self)
 	self.score = gui.get_node("score")
 	self.jumpButton = gui.get_node("jump")
 	self.attackButton = gui.get_node("attack")
+
+	local scale = global.window_height / global.height
+	
+	gui.set_scale(self.jumpButton, vmath.vector3(scale, scale, 0))
+	gui.set_scale(self.attackButton, vmath.vector3(scale, scale, 0))
+	--gui.set_position(self.jumpButton, vmath.vector3(global.window_width, 0, 0))
 end
 
 function final(self)

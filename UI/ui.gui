@@ -185,8 +185,8 @@ nodes {
 }
 nodes {
   position {
-    x: 865.0
-    y: 75.0
+    x: 916.0
+    y: 35.0
     z: 0.0
     w: 1.0
   }
@@ -218,9 +218,9 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "ui/shadedDark26"
   id: "jump"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  xanchor: XANCHOR_RIGHT
+  yanchor: YANCHOR_BOTTOM
+  pivot: PIVOT_SE
   adjust_mode: ADJUST_MODE_FIT
   layer: ""
   inherit_alpha: true
@@ -239,8 +239,8 @@ nodes {
 }
 nodes {
   position {
-    x: 80.0
-    y: 75.0
+    x: 40.0
+    y: 35.0
     z: 0.0
     w: 1.0
   }
@@ -272,9 +272,9 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "ui/shadedDark36"
   id: "attack"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_BOTTOM
+  pivot: PIVOT_SW
   adjust_mode: ADJUST_MODE_FIT
   layer: ""
   inherit_alpha: true

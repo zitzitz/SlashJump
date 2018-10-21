@@ -1,3 +1,4 @@
+global = require "scripts.global"
 
 local rendercam = require "rendercam.rendercam"
 local vp = rendercam.viewport
@@ -21,6 +22,11 @@ function init(self)
     self.particle_pred = render.predicate({"particle"})
 
     self.clear_color = vmath.vector4(0)
+
+    global.window_width = render.get_window_width()
+    global.window_height = render.get_window_height()
+    global.width = render.get_width()
+    global.height = render.get_height()
 
 	rendercam.configWin.x = render.get_width();  rendercam.configWin.y = render.get_height()
 	rendercam.update_window_size(render.get_window_width(), render.get_window_height())

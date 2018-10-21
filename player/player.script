@@ -110,7 +110,7 @@ local function attack(self)
 end
 
 local function attack_cancle(self)
-	--msg.post("sword", "disable")
+	msg.post("sword", "disable")
 end
 
 function on_message(self, message_id, message, sender)
