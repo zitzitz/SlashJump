@@ -53,9 +53,39 @@ function update(self, dt)
 
 	self.correction = vmath.vector3()
 	self.onGround = false
+
 end
 
 local function handle_obstacle_contact(self, normal, distance)
+	-- project the correction vector onto the contact normal
+	-- (the correction vector is the 0-vector for the first contact point)
+	local proj = vmath.dot(self.correction, normal)
+	-- calculate the compensation we need to make for this contact point
+	local comp = (distance - proj) * normal
+	-- add it to the correction vector
+	self.correction = self.correction + comp
+	-- apply the compensation to the player character
+	go.set_position(go.get_position() + comp)
+	-- check if the normal points enough up to consider the player standing on the ground
+	-- (0.7 is roughly equal to 45 degrees deviation from pure vertical direction)
+	if normal.y > 0.7 then
+		self.onGround = true
+		if self.anim == hash("jump") then
+			play_animation(self, hash("idle") )
+		end
+		msg.post("/background", "parallax", {enable = false})
+	end
+	-- project the velocity onto the normal
+	proj = vmath.dot(self.velocity, normal)
+	-- if the projection is negative, it means that some of the velocity points towards the contact point
+	if proj < 0 then
+		-- remove that component in that case
+		self.velocity = self.velocity - proj * normal
+	end
+end
+
+
+local function enemy_contact(self, normal, distance)
 	-- project the correction vector onto the contact normal
 	-- (the correction vector is the 0-vector for the first contact point)
 	local proj = vmath.dot(self.correction, normal)
@@ -136,20 +166,22 @@ function on_message(self, message_id, message, sender)
 		if message.group == hash("platform") then
 			handle_obstacle_contact(self, message.normal, message.distance)
 		elseif message.group == hash("enemy") and self.can_damage then
-			print(self.health)
-			self.health = self.health - 1
-			if self.health < 1 then
-				msg.post("main:/game#", "show_game_over")
-			end
-			self.can_damage = false
-			local id = delay.seconds(1.5, function(self, id)
-				print("I will be called once, unless I'm cancelled")
+			print(message.distance)
+			if message.distance > 0  then
+				self.health = self.health - 1
+				if self.health < 1 then
+					msg.post("main:/game#", "show_game_over")
+				end
+				self.can_damage = false
+				local id = delay.seconds(1.5, function(self, id)
+					print("I will be called once, unless I'm cancelled")
+					--self.can_damage = true
+				end)
+			else
+				print("TRUUUUUUUU")
 				self.can_damage = true
-			end)
+			end
 		end
-	else
-		print("cancle collision")
-		--self.can_damage = true
 	end
 end
 

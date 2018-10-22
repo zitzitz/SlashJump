@@ -6,8 +6,8 @@ function init(self)
 
 	local scale = global.window_height / global.height
 	
-	gui.set_scale(self.jumpButton, vmath.vector3(scale, scale, 0))
-	gui.set_scale(self.attackButton, vmath.vector3(scale, scale, 0))
+	--gui.set_scale(self.jumpButton, vmath.vector3(scale, scale, 0))
+	--gui.set_scale(self.attackButton, vmath.vector3(scale, scale, 0))
 	--gui.set_position(self.jumpButton, vmath.vector3(global.window_width, 0, 0))
 end
 
@@ -34,8 +34,9 @@ end
 function on_input(self, action_id, action)
 	
 	if action_id == hash("touch")  then 
-
-		if gui.pick_node(self.jumpButton, action.x, action.y) and action.pressed then 
+		print(gui.get_position(self.attackButton))
+		print(vmath.vector3(action.x, action.y, 0))
+		if gui.pick_node(self.jumpButton, action.x , action.y ) and action.pressed then 
 			msg.post("/player", "jump")
 		elseif gui.pick_node(self.attackButton, action.x, action.y) then
 
